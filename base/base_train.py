@@ -1,22 +1,29 @@
+"""
+some attributes of trainer class are hyper params for model
+1. epochs
+2. iter per epochs
+3. learning rate
+"""
+
 import tensorflow as tf
 
 
 class BaseTrain:
-    def __init__(self, sess, model, data, config, logger):
+    def __init__(self, sess, model, data):
         self.model = model
-        self.logger = logger
-        self.config = config
         self.sess = sess
         self.data = data
         self.init = tf.group(tf.global_variables_initializer(), tf.local_variables_initializer())
         self.sess.run(self.init)
 
-    def train(self):
-        for cur_epoch in range(self.model.cur_epoch_tensor.eval(self.sess), self.config.num_epochs + 1, 1):
-            self.train_epoch()
-            self.sess.run(self.model.increment_cur_epoch_tensor)
+    def train(self,epochs):
+        """
+        :param epochs: no. of passes through whole training set
+        :return: None
+        """
+        raise NotImplementedError
 
-    def train_epoch(self):
+    def train_epoch(self,iter_per_epoch):
         """
         implement the logic of epoch:
         -loop over the number of iterations in the config and call the train step
@@ -24,7 +31,7 @@ class BaseTrain:
         """
         raise NotImplementedError
 
-    def train_step(self):
+    def train_step(self,batch_size):
         """
         implement the logic of the train step
         - run the tensorflow session
