@@ -21,7 +21,7 @@ class BaseTrain:
 		self.sess.run(self.init)
 
 	def save_train_details(self,name):
-		raise NotImplementedError
+		pass
 
 	def train(self):
 		"""
