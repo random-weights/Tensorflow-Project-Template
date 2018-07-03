@@ -4,21 +4,18 @@ import numpy as np
 
 
 class TemplateTrainer(BaseTrain):
-    def __init__(self, sess, model, data, config, logger):
-        super(TemplateTrainer, self).__init__(sess, model, data, config, logger)
+	def __init__(self,name,sess,model,data,epochs,iter_per_epoch,batch_size):
+		super(TemplateTrainer,self).__init__(sess,model,data,epochs,iter_per_epoch,batch_size)
+		self.save_train_details(name)
 
-    def train_epoch(self):
-        """
-       implement the logic of epoch:
-       -loop on the number of iterations in the config and call the train step
-       -add any summaries you want using the summary
-        """
-        pass
+	def train(self):
+		pass
 
-    def train_step(self):
-        """
-       implement the logic of the train step
-       - run the tensorflow session
-       - return any metrics you need to summarize
-       """
-        pass
+	def train_epoch(self):
+		pass
+
+	def train_step(self):
+		pass
+
+	def save_train_details(self,name):
+		pass
