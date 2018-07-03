@@ -5,6 +5,7 @@ class BaseModel:
     def __init__(self, config):
         self.config = config
         self.global_step_tensor = tf.Variable(0, trainable=False, name='global_step')
+        self.saver = tf.train.Saver(max_to_keep=self.config.max_to_keep)
 
     # save function that saves the checkpoint in the path defined in the config file
     def save(self, sess):
@@ -19,9 +20,6 @@ class BaseModel:
             print("Loading model checkpoint {} ...\n".format(latest_checkpoint))
             self.saver.restore(sess, latest_checkpoint)
             print("Model loaded")
-
-    def init_saver(self):
-        self.saver = tf.train.Saver(max_to_keep=self.config.max_to_keep)
 
     def build_model(self):
         raise NotImplementedError
