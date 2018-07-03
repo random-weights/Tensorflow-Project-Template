@@ -17,5 +17,3 @@ class TemplateTrainer(BaseTrain):
 	def train_step(self):
 		pass
 
-	def save_train_details(self,name):
-		pass
